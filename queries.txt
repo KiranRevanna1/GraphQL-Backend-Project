@@ -1,0 +1,87 @@
+mutation SignUp {
+  signup(email: "", name: "", password: "") {
+    token
+    user {
+      email
+      id
+      name
+      password
+      items {
+        description
+        id
+        title
+        url
+      }
+    }
+  }
+}
+
+mutation Login {
+  login(email: "", password: "") {
+    token
+    user {
+      email
+      id
+      name
+      password
+      items {
+        url
+        title
+        description
+        id
+      }
+    }
+  }
+}
+
+mutation additems {
+  additems(input: {description: "", title: "", url: ""}) {
+    description
+    id
+    title
+    url
+  }
+}
+
+mutation removeItems {
+  removeitems(title: "") {
+    description
+    id
+    title
+    url
+  }
+}
+
+mutation updateItems {
+  updateitems(input: {description: "", title: "", url: ""}) {
+    description
+    id
+    title
+    url
+  }
+}
+query MyQuery {
+  users {
+    id
+    email
+    name
+    password
+    items {
+      description
+      id
+      title
+      url
+    }
+  }
+  getUserShortcuts {
+    description
+    id
+    title
+    url
+  }
+}
+
+{
+  "auth":
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY3MDgyMjM2M30.fJgDKT0ge_x-Z48PWd_2MxVUitFlkDVMJ2vly4TpAk4"
+}

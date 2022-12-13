@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<script>
+let eventSource;
+
+function start() { // when "Start" button pressed
+  if (!window.EventSource) {
+    // IE or an old browser
+    alert("The browser doesn't support EventSource.");
+    return;
+  }
+
+  eventSource = new EventSource('shortcuts');
+
+  eventSource.onopen = function(e) {
+    log("Event: open");
+  };
+
+  // eventSource.onerror = function(e) {
+  //   log("Event: error");
+  //   if (this.readyState == EventSource.CONNECTING) {
+  //     log(`Reconnecting (readyState=${this.readyState})...`);
+  //   } else {
+  //     log("Error has occured.");
+  //   }
+  // };
+
+  eventSource.addEventListener('bye', function(e) {
+    log("" + e.data);
+  });
+
+  eventSource.onmessage = function(e) {
+    log("Event: message, data: " + e.data);
+  };
+}
+function stop() { // when "Stop" button pressed
+  eventSource.close();
+  log("eventSource.close()");
+}
+
+
+function log(msg) {
+  const title = document.querySelector('h1');
+  title.textContent = msg;
+  document.documentElement.scrollTop = 99999999;
+}
+</script>
+
+<center><br><br><button type="button" class="btn btn-success" onclick="start()">Start</button>
+
+<br><br>
+<h1>Loading...</h1>
+<br><br><button type="button" class="btn btn-warning" onclick="stop()">Stop</button></button></center>
