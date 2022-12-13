@@ -1,1 +1,1 @@
-export const APP_SECRET = "khandelwal";
+export const APP_SECRET = "KIRAN_REVANNA";
