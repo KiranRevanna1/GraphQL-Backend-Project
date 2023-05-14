@@ -1,5 +1,3 @@
-# GraphQL-Backend-Project
-GraphQL-Backend-Project
 # Backend - GraphQL with SST & Cloudflare
 
 ## Learning basics of GraphQL
